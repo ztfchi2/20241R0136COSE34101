@@ -39,7 +39,6 @@ int exp_rand(int min, int max, int ind) {
 
 void generate_processes(Process** pprocesses, int n_proc, int exp_a, int exp_cpu, int perc) {
     // default: uniform distribution
-    // can change to other exponential?
     for (int i=0; i<n_proc; i++) {
         int choose = rand_range(1, 100);
 
@@ -53,6 +52,7 @@ void generate_processes(Process** pprocesses, int n_proc, int exp_a, int exp_cpu
         } else {
             (*pprocesses)[i].arrival = exp_rand(MIN_ARRIVAL, MAX_ARRIVAL, exp_a);
         }
+
         if (exp_cpu == 0) {
             (*pprocesses)[i].cpu_burst = rand_range(MIN_CPU_BURST, MAX_CPU_BURST);
         } else {
@@ -63,6 +63,7 @@ void generate_processes(Process** pprocesses, int n_proc, int exp_a, int exp_cpu
         if (choose > perc) {
             (*pprocesses)[i].io_burst = 0;
         }
+        
         (*pprocesses)[i].priority = rand_range(1, n_proc);
     }
 

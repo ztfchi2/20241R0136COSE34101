@@ -86,7 +86,6 @@ int main(int argc, char* argv[]) {
                     break;
                 case '6':
                     // Round Robin
-                    /* code implementation */
                     RR(processes, n_process, set.rr_quant);
                     printf("Press [Enter] to go back... ");
                     while ((getchar()) != '\n');

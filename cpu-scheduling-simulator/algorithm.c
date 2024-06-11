@@ -162,9 +162,9 @@ void increase_waiting_time(int** wait_time, int* ready, int front, int rear) {
 
 int io_operation(Process** p, int** waitp, int** readyp, int* fp, int* rp, int* fp2, int* rp2) {
     int i;
-    if ((*fp) != (*rp)) {
+    if ((*fp) != (*rp)) {   // io device queue is not empty
         (*p)[(*waitp)[(*fp)]].io_burst--;
-        if ((*p)[(*waitp)[(*fp)]].io_burst == 0) {
+        if ((*p)[(*waitp)[(*fp)]].io_burst == 0) {  // finished io op
             (*readyp)[(*rp2)] = (*waitp)[(*fp)];
             (*rp2)++;
             (*fp)++;
@@ -244,7 +244,7 @@ void FCFS(Process* procs, int n_proc) {
             
             t++;
             
-            // io burst occurs in a fixed manner (after 1ms in cpu)
+            // io occurs in a fixed manner (after 1ms in cpu)
             if (processes[ready[c_f]].io_burst > 0) { 
                 // put current process to waiting queue
                 waiting[i_r++] = ready[c_f];
@@ -339,7 +339,7 @@ void nonpreemptive_SJF(Process* procs, int n_proc) {
 
             t++;
             
-            // io burst occurs in a fixed manner (after 1ms in cpu)
+            // io occurs in a fixed manner (after 1ms in cpu)
             if (processes[ready[c_f]].io_burst > 0) { 
                 // put current process to waiting queue
                 waiting[i_r++] = ready[c_f];
@@ -439,7 +439,7 @@ void preemptive_SJF(Process* procs, int n_proc) {
 
             t++;
             
-            // io burst occurs in a fixed manner (after 1ms in cpu)
+            // io occurs in a fixed manner (after 1ms in cpu)
             if (processes[ready[c_f]].io_burst > 0) { 
                 // put current process to waiting queue
                 waiting[i_r++] = ready[c_f];
@@ -535,7 +535,7 @@ void nonpreemptive_priority(Process* procs, int n_proc) {
 
             t++;
             
-            // io burst occurs in a fixed manner (after 1ms in cpu)
+            // io occurs in a fixed manner (after 1ms in cpu)
             if (processes[ready[c_f]].io_burst > 0) { 
                 // put current process to waiting queue
                 waiting[i_r++] = ready[c_f];
@@ -635,7 +635,7 @@ void preemptive_priority(Process* procs, int n_proc) {
 
             t++;
             
-            // io burst occurs in a fixed manner (after 1ms in cpu)
+            // io occurs in a fixed manner (after 1ms in cpu)
             if (processes[ready[c_f]].io_burst > 0) { 
                 // put current process to waiting queue
                 waiting[i_r++] = ready[c_f];
@@ -739,7 +739,7 @@ void RR(Process* procs, int n_proc, int quant) {
             
             t++;
             
-            // io burst occurs in a fixed manner (after 1ms in cpu)
+            // io occurs in a fixed manner (after 1ms in cpu)
             if (processes[ready[c_f]].io_burst > 0) { 
                 // put current process to waiting queue
                 waiting[i_r++] = ready[c_f];
